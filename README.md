@@ -4,9 +4,10 @@ Local multiplayer roulette game.
 
 Odds:
 
-odd/even - 1:1
-firsthalf/secondhalf - 1:1
-primeNumber - 4:1
+odd/even - 1:1  
+ss
+firsthalf/secondhalf - 1:1 /n
+primeNumber - 4:1 /n
 rangeOf10 - 10:1
 fiveNumbers - 20:1
 fourNumbers - 25:1
