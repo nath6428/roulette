@@ -17,7 +17,9 @@ straight - 100:1
 ## How to commit:
 
 git commit "filename"
+
 git commit -m "some comment"
+
 git push
 
 
