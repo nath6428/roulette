@@ -1,7 +1,7 @@
 import random as r
 import sympy as sym
 
-
+# not even started
 numlist = [x for x in range(0,100)]
 print(numlist)
 
