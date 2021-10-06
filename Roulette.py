@@ -57,7 +57,8 @@ class Round:
     def __init__(self, obj):
         self.obj = obj
 
-    def initiate(cls):
+    @staticmethod
+    def initiate():
         global initiate
         print('Ladies and gentleman!')
         # sleep(1)
@@ -75,7 +76,6 @@ class Round:
         print('\n')
     
     def rules():
-
         pass
 
     @staticmethod
@@ -93,10 +93,7 @@ class Round:
             while choice not in range(1,10):
                 choice = int(input(f'{self.obj[i].name}, stop fkn around nigga, enter bet number again (1-9): '))
         dice = Round.rollDice()
-
-
-        
-        
+      
 
 def input_fn():
     players = 3 #int(input('Enter the number of players: '))
@@ -110,7 +107,7 @@ def main():
         obj_list.append(player)
 
 
-    Round.initiate(Round)
+    Round.initiate()
     if initiate == 'n':
         print('fairwell brothers and sisters')
     else:
@@ -118,8 +115,6 @@ def main():
 
         game.print_prob() # print probabilities
         game.round()
-
-
 
 main()
 
