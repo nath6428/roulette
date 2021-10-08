@@ -1,11 +1,9 @@
 from math import *
-# from os import stat
 from random import *
 from time import *
-from tkinter import *
+# import pygame
 
 # INTRODUCTION
-
 ## Global vars
 
 adjlist = ['mighty', 'fierce', 'incredible', 'ferocious', 'beautiful', 'charming', 
@@ -52,7 +50,6 @@ class Player:
     def __add__(self,other):
         return self.cash + other.cash
 
-
 class Round:
     def __init__(self, obj):
         self.obj = obj
@@ -74,16 +71,18 @@ class Round:
             print(n,i,j)
             n +=1
         print('\n')
-    
-    def rules():
-        pass
 
+    @staticmethod
+    def rules():
+        print('Thats excellent, lets kick this off with the rules of the game')
+        sleep(1)
+        print('The game we will be playing, is quite obviously, roulette!')
+        print('\n')
+        
     @staticmethod
     def rollDice():
         return randint(0,32)
     
-
-
     def round(self):
         
         print('Choose a bet mf:')
@@ -93,7 +92,7 @@ class Round:
             while choice not in range(1,10):
                 choice = int(input(f'{self.obj[i].name}, stop fkn around nigga, enter bet number again (1-9): '))
         dice = Round.rollDice()
-      
+        print(dice)
 
 def input_fn():
     players = 3 #int(input('Enter the number of players: '))
@@ -112,11 +111,13 @@ def main():
         print('fairwell brothers and sisters')
     else:
         game = Round(obj_list) # create game instance
+        game.rules()
 
         game.print_prob() # print probabilities
         game.round()
 
 main()
+
 
 
 
