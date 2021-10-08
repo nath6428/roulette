@@ -109,7 +109,7 @@ def main():
 
     Round.initiate()
     if initiate == 'n':
-        print('fairwell brothers and sisters')
+        print('farewell brothers and sisters')
     else:
         game = Round(obj_list) # create game instance
 
