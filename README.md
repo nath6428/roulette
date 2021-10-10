@@ -1,4 +1,4 @@
-# roulette
+# Roulette
 
 Local multiplayer roulette game.
 
@@ -14,3 +14,15 @@ threeNumbers - 33:1
 twoNumbers - 50:1  
 straight - 100:1  
 
+## How to commit:
+
+git commit "filename"
+
+git commit -m "some comment"
+
+git push
+
+
+
+## Check status
+git status

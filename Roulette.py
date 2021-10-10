@@ -1,7 +1,10 @@
 from math import *
+from os import stat
 from random import *
 from time import *
+from RouletteNumbers import *
 # import pygame
+
 
 # INTRODUCTION
 ## Global vars
@@ -11,20 +14,19 @@ adjlist = ['mighty', 'fierce', 'incredible', 'ferocious', 'beautiful', 'charming
             'prodigious', 'dazzling', 'amazing', 'formidable','astonishing']
 obj_list = []
 option_dic = {
-    'odd_even' : '1:1',
-    'firsthalf_secondhalf' : '1:1',
+    'odd_even' :'1:1',
+    'firsthalf_secondhalf':'1:1',
     'primeNumber': '4:1',
-    'rangeOf10' : '10.1',
-    'fiveNumbers' : '20:1',
-    'fourNumbers' : '25:1',
-    'threeNumbers' : '33:1',
-    'twoNumbers' : '50:1',
-    'straight' : '100:1'
+    'rangeOf10': '10.1',
+    'fiveNumbers': '20:1',
+    'fourNumbers': '25:1',
+    'threeNumbers': '33:1',
+    'twoNumbers': '50:1',
+    'straight': '100:1'
 }
 
 class Player:
     name_list = []
-
     def __init__(self, name, cash=15000):
         self.name = name
         self.cash = float(cash)
@@ -47,13 +49,8 @@ class Player:
         string = string + f' and the {adjlist[-1]} {Player.name_list[-1]}!'
         print(string+'\n')
 
-    def __add__(self,other):
-        return self.cash + other.cash
 
 class Round:
-    def __init__(self, obj):
-        self.obj = obj
-
     @staticmethod
     def initiate():
         global initiate
@@ -64,38 +61,67 @@ class Round:
         Player.intro_fn()
         # sleep(3)
         initiate = 'y' #input('shall we begin? (y/n)')
-        
-    def print_prob(self):
-        n = 1
-        for i,j in zip(list(option_dic.keys()), list(option_dic.values())):
-            print(n,i,j)
-            n +=1
-        print('\n')
 
+        if initiate == 'n':
+            print('fairwell brothers and sisters')
+        else:
+            print('Thats excellent, lets kick this off with the rules of the game')
+            sleep(1)
+            print('The game we will be playing, is quite obviously, roulette!')
+            print('\n')
+            
     @staticmethod
-    def rules():
-        print('Thats excellent, lets kick this off with the rules of the game')
-        sleep(1)
-        print('The game we will be playing, is quite obviously, roulette!')
+    def print_prob():
+        for index, (odd, prob) in enumerate(zip(list(option_dic.keys()), list(option_dic.values())), start = 1):
+            print(index, odd, prob)
         print('\n')
-        
-    @staticmethod
-    def rollDice():
-        return randint(0,32)
-    
+   
     def round(self):
-        
+        number = 18 #bets.rollDice()
         print('Choose a bet mf:')
-        for i in range(len(obj_list)):
-            choice = int(input(f'{self.obj[i].name}, enter bet number (1-9): '))
-
+        for i in obj_list:
+            choice = int(input(f'{i.name}, enter bet number (1-9): '))
             while choice not in range(1,10):
-                choice = int(input(f'{self.obj[i].name}, stop fkn around nigga, enter bet number again (1-9): '))
-        dice = Round.rollDice()
-        print(dice)
+                choice = int(input(f'{i.name}, stop fkn around nigga, enter bet number again (1-9): '))
+
+            player = bets(i.cash)
+            if choice == 1:
+                flag = int(input('first/second: '))
+                i.cash = player.evenodd(flag) 
+                
+            elif choice ==2:
+                flag = int(input('first/second: '))
+                i.cash = player.evenodd(flag)
+
+            elif choice ==3:
+                i.cash = player.prime()
+
+            elif choice ==4:
+                i.cash = player.rangeof10()
+
+            elif choice ==5:
+                i.cash = player.oneToFiveNumbers()
+
+            elif choice ==6:
+                # i.cash = player.oneToFiveNumbers()
+                return False          
+
+            elif choice ==7:
+                # i.cash = player.oneToFiveNumbers()
+                return False
+
+            elif choice ==8:
+                # i.cash = player.oneToFiveNumbers()
+                return False
+
+            elif choice ==9:            
+                # i.cash = player.oneToFiveNumbers()
+                return False
+
+
 
 def input_fn():
-    players = 3 #int(input('Enter the number of players: '))
+    players = 4 #int(input('Enter the number of players: '))
     return players
 
 def main():
@@ -104,15 +130,9 @@ def main():
     for i in range(1,players+1):
         player = Player('name'+str(i)) #input(f"Enter Player{i}'s gamertags: ")
         obj_list.append(player)
-
-
     Round.initiate()
-    if initiate == 'n':
-        print('fairwell brothers and sisters')
-    else:
-        game = Round(obj_list) # create game instance
-        game.rules()
-
+    if initiate == 'y':
+        game = Round() # create game instance
         game.print_prob() # print probabilities
         game.round()
 
@@ -121,5 +141,5 @@ main()
 
 
 
-
-
+for i in obj_list:
+    print(i.cash)
