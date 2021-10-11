@@ -4,8 +4,6 @@ from random import *
 from time import *
 from RouletteNumbers import *
 # import pygame
-
-
 # INTRODUCTION
 ## Global vars
 
@@ -24,6 +22,7 @@ option_dic = {
     'twoNumbers': '50:1',
     'straight': '100:1'
 }
+
 
 class Player:
     name_list = []
@@ -77,7 +76,7 @@ class Round:
         print('\n')
    
     def round(self):
-        number = 18 #bets.rollDice()
+        #bets.rollWheel()
         print('Choose a bet mf:')
         for i in obj_list:
             choice = int(input(f'{i.name}, enter bet number (1-9): '))
@@ -86,42 +85,22 @@ class Round:
 
             player = bets(i.cash)
             if choice == 1:
-                flag = int(input('first/second: '))
-                i.cash = player.evenodd(flag) 
+                i.cash = player.evenodd() 
                 
             elif choice ==2:
-                flag = int(input('first/second: '))
-                i.cash = player.evenodd(flag)
+                i.cash = player.firstHalf()
 
             elif choice ==3:
                 i.cash = player.prime()
 
-            elif choice ==4:
+            elif choice == 4:
                 i.cash = player.rangeof10()
 
-            elif choice ==5:
+            elif choice ==5 or choice == 6 or choice == 7 or choice == 8 or choice == 9:
                 i.cash = player.oneToFiveNumbers()
 
-            elif choice ==6:
-                # i.cash = player.oneToFiveNumbers()
-                return False          
-
-            elif choice ==7:
-                # i.cash = player.oneToFiveNumbers()
-                return False
-
-            elif choice ==8:
-                # i.cash = player.oneToFiveNumbers()
-                return False
-
-            elif choice ==9:            
-                # i.cash = player.oneToFiveNumbers()
-                return False
-
-
-
 def input_fn():
-    players = 4 #int(input('Enter the number of players: '))
+    players = 2 #int(input('Enter the number of players: '))
     return players
 
 def main():
@@ -134,10 +113,10 @@ def main():
     if initiate == 'y':
         game = Round() # create game instance
         game.print_prob() # print probabilities
+        number = 18 
         game.round()
 
 main()
-
 
 
 
